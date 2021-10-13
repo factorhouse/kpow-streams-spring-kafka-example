@@ -19,7 +19,9 @@ Once started, run kPow with the target cluster and navigate to 'Streams' to view
 3. Run the Order Service JAR with `java -jar build/libs/orders-service-10.0.8.jar`
 4. Navigate to localhost:3000 > Streams > OrdersService (can take 1-2 minutes to appear)
 
--- Original Project Readme Follows --
+----
+
+### Original Project Readme Follows
 
 ## Orders Service
 
