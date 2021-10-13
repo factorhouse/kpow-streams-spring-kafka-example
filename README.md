@@ -14,6 +14,11 @@ Once started, run kPow with the target cluster and navigate to 'Streams' to view
 
 ### Quickstart
 
+This project uses kpow/local to start a local 3-node Kafka cluster with kPow, we then build an Order Service JAR and run it with the same Cluster.
+
+
+-- Original Project Readme Follows --
+
 ## Orders Service
 
 This is a re-write of the OrdersService found in the Confluent [Microservices Demos examples](https://github.com/confluentinc/kafka-streams-examples/tree/6.0.0-post/src/main/java/io/confluent/examples/streams/microservices)
