@@ -40,6 +40,7 @@ public class OrdersServiceConfig {
   NewTopic orders(OrdersTopicConfig topicConfig) {
     return createTopic(topicConfig);
   }
+
   @Bean
   KafkaStreamsConfiguration defaultKafkaStreamsConfig() throws UnknownHostException {
     Map<String, Object> newConfig = configuredKafkaProperties.buildStreamsProperties();
@@ -48,6 +49,7 @@ public class OrdersServiceConfig {
       InetAddress.getLocalHost().getHostName() + ":" + httpServerPort);
     return new KafkaStreamsConfiguration(newConfig);
   }
+
   @Bean
   public HostInfo thisInstanceHostInfo() throws UnknownHostException {
     return new HostInfo(InetAddress.getLocalHost().getHostName(), parseInt(httpServerPort));

@@ -30,8 +30,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
   implementation 'org.springframework.boot:spring-boot-starter-actuator'
   implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	implementation 'org.apache.kafka:kafka-streams'
-  implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'org.apache.kafka:kafka-streams:2.8.0'
+  implementation 'org.apache.kafka:kafka-clients:2.8.0'
+  implementation 'org.springframework.kafka:spring-kafka:2.7.7'
+  implementation 'io.operatr:kpow-streams-agent:0.2.8'
 
   compileOnly 'org.projectlombok:lombok'
   // If you're using IDEA, this is helpful: https://projectlombok.org/setup/intellij
