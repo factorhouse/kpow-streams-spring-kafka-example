@@ -19,6 +19,54 @@ Once started, run kPow with the target cluster and navigate to 'Streams' to view
 3. Run the Order Service JAR with `java -jar build/libs/orders-service-10.0.8.jar`
 4. Navigate to localhost:3000 > Streams > OrdersService (can take 1-2 minutes to appear)
 
+## How We Integrated WordCount Streams with the kPow Agent
+
+### Get the kPow Streams Dependency
+
+Include the kPow Streams Agent library in your application:
+
+```
+implementation 'io.operatr:kpow-streams-agent:0.2.8'
+```
+
+### Integrate the Agent
+
+We define a new Component that adds an event-listener to the StreamsBuilderFactoryBean, registering the Streams and Topology once the Kafka Streams application has been started.
+
+```Java
+package io.confluent.kafkadevops.microservicesorders.ordersservice;
+
+import io.operatr.kpow.StreamsRegistry;
+import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.Topology;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.config.StreamsBuilderFactoryBean;
+import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
+
+@Component
+public class kPowAgentService {
+
+  @Autowired
+  public kPowAgentService(final StreamsBuilderFactoryBean factory) {
+
+    factory.addListener(new StreamsBuilderFactoryBean.Listener() {
+      @Override
+      public void streamsAdded(@NonNull String id, @NonNull KafkaStreams streams) {
+        Topology topology = factory.getTopology();
+
+        // Create a kPow StreamsRegistry connecting to the same Kafka Cluster as Kafka Streams.
+        // Note: In a multi-cluster kPow setup the StreamsRegistry must be configured with your Primary cluster.
+        StreamsRegistry registry = new StreamsRegistry(factory.getStreamsConfiguration());
+
+        // Register your KafkaStreams and Topology instances with the StreamsRegistry
+        registry.register(streams, topology);
+      }
+    });
+  }
+}
+```
+
 ----
 
 ### Original Project Readme Follows
