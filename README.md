@@ -4,7 +4,7 @@
 
 Integrated [Confluent Order Service](https://github.com/confluentinc/streaming-ops/tree/main/apps/microservices-orders/orders-service) Spring Kafka example application with the [kPow Streams Agent](https://github.com/operatr-io/kpow-streams-agent).
 
-Run this project with the original instructions below, we have integrated the kPow Agent. You will see log-lines like:
+Run this project with the instructions below, we have integrated the kPow Agent. You will see log-lines like:
 
 ```
 kPow: sent [370] streams metrics for application.id OrdersService
