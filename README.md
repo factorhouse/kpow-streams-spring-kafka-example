@@ -1,29 +1,29 @@
-# Monitor Spring Kafka Applications with kPow
+# Monitor Spring Kafka Applications with Kpow
 
 ![kpow-kafka-streams-viz](https://user-images.githubusercontent.com/2832467/137060506-4d7ff311-29da-42ed-8e14-97ccfea6f7d3.png)
 
-Integrated [Confluent Order Service](https://github.com/confluentinc/streaming-ops/tree/main/apps/microservices-orders/orders-service) Spring Kafka example application with the [kPow Streams Agent](https://github.com/operatr-io/kpow-streams-agent).
+Integrated [Confluent Order Service](https://github.com/confluentinc/streaming-ops/tree/main/apps/microservices-orders/orders-service) Spring Kafka example application with the [Kpow Streams Agent](https://github.com/operatr-io/kpow-streams-agent).
 
-Run this project with the instructions below, we have integrated the kPow Agent. You will see log-lines like:
+Run this project with the instructions below, we have integrated the Kpow Agent. You will see log-lines like:
 
 ```
-kPow: sent [370] streams metrics for application.id OrdersService
+Kpow: sent [370] streams metrics for application.id OrdersService
 ```
 
-Once started, run kPow with the target cluster and navigate to 'Streams' to view the live topology and metrics.
+Once started, run Kpow with the target cluster and navigate to 'Streams' to view the live topology and metrics.
 
 ### Quickstart
 
-1. Start a 3-Node Kafka Cluster and kPow with [kpow/local](https://github.com/operatr-io/kpow-local).
+1. Start a 3-Node Kafka Cluster and Kpow with [kpow/local](https://github.com/operatr-io/kpow-local).
 2. Build the Order Service JAR with `make test`
 3. Run the Order Service JAR with `java -jar build/libs/orders-service-10.0.8.jar`
 4. Navigate to localhost:3000 > Streams > OrdersService (can take 1-2 minutes to appear)
 
-## How We Integrated WordCount Streams with the kPow Agent
+## How We Integrated WordCount Streams with the Kpow Agent
 
-### Get the kPow Streams Dependency
+### Get the Kpow Streams Dependency
 
-Include the kPow Streams Agent library in your application:
+Include the Kpow Streams Agent library in your application:
 
 ```
 implementation 'io.operatr:kpow-streams-agent:0.2.8'
@@ -45,18 +45,18 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 @Component
-public class kPowAgentService {
+public class KpowAgentService {
 
   @Autowired
-  public kPowAgentService(final StreamsBuilderFactoryBean factory) {
+  public KpowAgentService(final StreamsBuilderFactoryBean factory) {
 
     factory.addListener(new StreamsBuilderFactoryBean.Listener() {
       @Override
       public void streamsAdded(@NonNull String id, @NonNull KafkaStreams streams) {
         Topology topology = factory.getTopology();
 
-        // Create a kPow StreamsRegistry connecting to the same Kafka Cluster as Kafka Streams.
-        // Note: In a multi-cluster kPow setup the StreamsRegistry must be configured with your Primary cluster.
+        // Create a Kpow StreamsRegistry connecting to the same Kafka Cluster as Kafka Streams.
+        // Note: In a multi-cluster Kpow setup the StreamsRegistry must be configured with your Primary cluster.
         StreamsRegistry registry = new StreamsRegistry(factory.getStreamsConfiguration());
 
         // Register your KafkaStreams and Topology instances with the StreamsRegistry
