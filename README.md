@@ -2,7 +2,7 @@
 
 ![kpow-kafka-streams-viz](https://user-images.githubusercontent.com/2832467/137060506-4d7ff311-29da-42ed-8e14-97ccfea6f7d3.png)
 
-Integrated [Confluent Order Service](https://github.com/confluentinc/streaming-ops/tree/main/apps/microservices-orders/orders-service) Spring Kafka example application with the [Kpow Streams Agent](https://github.com/operatr-io/kpow-streams-agent).
+Integrated [Confluent Order Service](https://github.com/confluentinc/streaming-ops/tree/main/apps/microservices-orders/orders-service) Spring Kafka example application with the [Kpow Streams Agent](https://github.com/factorhouse/kpow-streams-agent).
 
 Run this project with the instructions below, we have integrated the Kpow Agent. You will see log-lines like:
 
