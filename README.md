@@ -14,7 +14,7 @@ Once started, run Kpow with the target cluster and navigate to 'Streams' to view
 
 ### Quickstart
 
-1. Start a 3-Node Kafka Cluster and Kpow with [kpow/local](https://github.com/factorhouse/kpow-local).
+1. Start a 3-Node Kafka Cluster and Kpow with [Kpow Local](https://github.com/factorhouse/kpow-local).
 2. Build the Order Service JAR with `make test`
 3. Run the Order Service JAR with `java -jar build/libs/orders-service-10.0.8.jar`
 4. Navigate to localhost:3000 > Streams > OrdersService (can take 1-2 minutes to appear)
