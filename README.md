@@ -1,6 +1,8 @@
 # Monitor Spring Kafka Applications with Kpow
 
-![kpow-kafka-streams-viz](https://user-images.githubusercontent.com/2832467/137060506-4d7ff311-29da-42ed-8e14-97ccfea6f7d3.png)
+
+![streams-topology-usage](https://github.com/user-attachments/assets/1ae50e31-fcec-4e0b-b263-dc59b5f46364)
+
 
 Integrated [Confluent Order Service](https://github.com/confluentinc/streaming-ops/tree/main/apps/microservices-orders/orders-service) Spring Kafka example application with the [Kpow Streams Agent](https://github.com/factorhouse/kpow-streams-agent).
 
