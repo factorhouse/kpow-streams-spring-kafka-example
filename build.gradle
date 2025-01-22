@@ -1,16 +1,16 @@
 buildscript {
-  repositories {
-    jcenter()
-  }
-  dependencies {
-    classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.21.0"
-  }
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.21.0"
+    }
 }
 
 plugins {
-	id 'org.springframework.boot' version '2.3.4.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
 }
 
 group = 'io.confluent.streaming-ops.microservices-orders'
@@ -18,40 +18,40 @@ version = '10.0.8'
 sourceCompatibility = '11'
 
 repositories {
-	mavenCentral()
-  maven {
-    url "https://packages.confluent.io/maven/"
-  }
+    mavenCentral()
+    maven {
+        url "https://packages.confluent.io/maven/"
+    }
 }
 
 apply plugin: "com.commercehub.gradle.plugin.avro"
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-  implementation 'org.springframework.boot:spring-boot-starter-actuator'
-  implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	implementation 'org.apache.kafka:kafka-streams:2.8.0'
-  implementation 'org.apache.kafka:kafka-clients:2.8.0'
-  implementation 'org.springframework.kafka:spring-kafka:2.7.7'
-  implementation 'io.operatr:kpow-streams-agent:0.2.8'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.apache.kafka:kafka-streams:2.8.0'
+    implementation 'org.apache.kafka:kafka-clients:2.8.0'
+    implementation 'org.springframework.kafka:spring-kafka:2.7.7'
+    implementation 'io.factorhouse:kpow-streams-agent:1.0.0'
 
-  compileOnly 'org.projectlombok:lombok'
-  // If you're using IDEA, this is helpful: https://projectlombok.org/setup/intellij
-  annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+    // If you're using IDEA, this is helpful: https://projectlombok.org/setup/intellij
+    annotationProcessor 'org.projectlombok:lombok'
 
-  implementation 'org.apache.avro:avro:1.10.0'
-  implementation 'io.confluent:kafka-streams-avro-serde:6.0.0'
-  implementation "io.vavr:vavr:0.10.3"
-  testImplementation 'org.awaitility:awaitility'
-  testImplementation 'org.springframework.boot:spring-boot-starter-test'
-  testImplementation 'org.springframework.kafka:spring-kafka-test'
-  testImplementation 'org.apache.kafka:kafka-streams-test-utils'
+    implementation 'org.apache.avro:avro:1.10.0'
+    implementation 'io.confluent:kafka-streams-avro-serde:6.0.0'
+    implementation "io.vavr:vavr:0.10.3"
+    testImplementation 'org.awaitility:awaitility'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+    testImplementation 'org.apache.kafka:kafka-streams-test-utils'
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 
-  testLogging {
-    events "passed", "skipped", "failed"
-  }
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }

@@ -27,7 +27,7 @@ Once started, run Kpow with the target cluster and navigate to 'Streams' to view
 Include the Kpow Streams Agent library in your application:
 
 ```
-implementation 'io.operatr:kpow-streams-agent:0.2.8'
+implementation 'io.factorhouse:kpow-streams-agent:1.0.0'
 ```
 
 ### Integrate the Agent
@@ -37,7 +37,8 @@ We define a new Component that adds an event-listener to the StreamsBuilderFacto
 ```Java
 package io.confluent.kafkadevops.microservicesorders.ordersservice;
 
-import io.operatr.kpow.StreamsRegistry;
+import io.factorhouse.kpow.StreamsRegistry;
+import io.factorhouse.kpow.key.ClusterIdKeyStrategy;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.Topology;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +61,12 @@ public class KpowAgentService {
         // Note: In a multi-cluster Kpow setup the StreamsRegistry must be configured with your Primary cluster.
         StreamsRegistry registry = new StreamsRegistry(factory.getStreamsConfiguration());
 
+        // Specify the key strategy when writing metrics to the internal Kafka topic
+        // props are java.util.Properties describing the Kafka Connection
+        ClusterIdKeyStrategy keyStrat = new ClusterIdKeyStrategy(factory.getStreamsConfiguration());
+        
         // Register your KafkaStreams and Topology instances with the StreamsRegistry
-        registry.register(streams, topology);
+        registry.register(streams, topology, keyStrat);
       }
     });
   }
